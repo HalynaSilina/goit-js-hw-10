@@ -15,41 +15,47 @@ countryNameInput.addEventListener(
 
 function handleSearchCountryInput(e) {
   const countryName = e.target.value.trim();
-  if (countryName==="") {
+  if (countryName === '') {
     countryList.innerHTML = '';
     countryInfo.innerHTML = '';
-    return
+    return;
   }
   fetchCountries(countryName)
     .then(data => searchSpecifityCheck(data))
-    .catch(error => onError(error));
+    .catch(onError);
 }
 
 function searchSpecifityCheck(data) {
-  if (data.length > 10) {
+  const countryAmount = data.length;
+  if (countryAmount > 10) {
     return Notify.info(
       'Too many matches found. Please enter a more specific name.'
     );
-  } else if (data.length >= 2 && data.length <= 10) {
+  } else if (countryAmount >= 2 && countryAmount <= 10) {
     countryInfo.innerHTML = '';
-    const markup = data
-      .map(
-        element =>
-          `<li><img src="${element.flags.svg}" width=60><h2>${element.name.official}</h2>`
-      )
-      .join('');
+    createListOfCountries(data);
     countryList.innerHTML = markup;
   } else {
-    const languages = Object.values(data[0].languages).join(', ');
     countryList.innerHTML = '';
-    countryInfo.innerHTML = `<img src="${data[0].flags.svg}" width=60><h2>${
-      data[0].name.official
-    }</h2><p>Capital: ${data[0].capital}</p><p>Population: ${
-      data[0].population
-    }</p><p>Languages: ${languages}</p>`;
+    createCountryCard(data);
+    countryInfo.innerHTML = card;
   }
 }
-function onError(error) {
-  console.error(error);
+function onError() {
   Notify.failure('Oops, there is no country with that name');
+}
+
+function createListOfCountries(data) {
+  return (markup = data
+    .map(
+      element =>
+        `<li><img src="${element.flags.svg}" width=60><h2>${element.name.official}</h2>`
+    )
+    .join(''));
+}
+
+function createCountryCard(data) {
+  const languages = Object.values(data[0].languages).join(', ');
+  const capital = Object.values(data[0].capital).join(', ');
+  return (card = `<div class= "country-title"> <img src="${data[0].flags.svg}" width=60><h2>${data[0].name.official}</h2></div><p><span>Capital: </span>${capital}</p><p><span>Population: </span>${data[0].population}</p><p><span>Languages: </span>${languages}</p>`);
 }

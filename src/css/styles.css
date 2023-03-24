@@ -23,10 +23,22 @@ body {
 }
 .country-list li {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
-.country-list img {
+img {
   width: 60px;
   height: 30px;
   margin-right: 20px;
+}
+
+.country-title {
+  display: flex;
+  align-items: center;
+}
+
+.country-info p {
+  font-size: 18px;
+}
+.country-info span {
+  font-weight: 700;
 }
