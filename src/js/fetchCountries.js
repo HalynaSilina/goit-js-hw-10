@@ -15,9 +15,5 @@ population: country.population,
 languages: Object.values(country.languages),
 capital: country.capital}));
 return countriesData;
-}).catch(onError);
+}).catch(Notify.failure('Oops, there is no country with that name'));
 }
-
-function onError() {
-    Notify.failure('Oops, there is no country with that name');
-  }
