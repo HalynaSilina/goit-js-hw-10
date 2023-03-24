@@ -51,7 +51,7 @@ function createListOfCountries(data) {
       element =>
         `<li><img src="${element.flags.svg}" width=60><h2>${element.name.official}</h2>`
     )
-    .join(''));
+    .join(', '));
 }
 
 function createCountryCard(data) {
