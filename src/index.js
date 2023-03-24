@@ -20,9 +20,7 @@ function handleSearchCountryInput(e) {
     countryInfo.innerHTML = '';
     return;
   }
-  fetchCountries(countryName)
-    .then(data => searchSpecifityCheck(data))
-    .catch(onError);
+  fetchCountries(countryName).then(data=>searchSpecifityCheck(data));
 }
 
 function searchSpecifityCheck(data) {
@@ -41,15 +39,13 @@ function searchSpecifityCheck(data) {
     countryInfo.innerHTML = card;
   }
 }
-function onError() {
-  Notify.failure('Oops, there is no country with that name');
-}
+
 
 function createListOfCountries(data) {
   return (markup = data
     .map(
       element =>
-        `<li><img src="${element.flags.svg}" width=60><h2>${element.name.official}</h2>`
+        `<li><img src="${element.flag}" width=60><h2>${element.name}</h2>`
     )
     .join(', '));
 }
@@ -57,5 +53,5 @@ function createListOfCountries(data) {
 function createCountryCard(data) {
   const languages = Object.values(data[0].languages).join(', ');
   const capital = Object.values(data[0].capital).join(', ');
-  return (card = `<div class= "country-title"> <img src="${data[0].flags.svg}" width=60><h2>${data[0].name.official}</h2></div><p><span>Capital: </span>${capital}</p><p><span>Population: </span>${data[0].population}</p><p><span>Languages: </span>${languages}</p>`);
+  return (card = `<div class= "country-title"> <img src="${data[0].flag}" width=60><h2>${data[0].name}</h2></div><p><span>Capital: </span>${capital}</p><p><span>Population: </span>${data[0].population}</p><p><span>Languages: </span>${languages}</p>`);
 }
