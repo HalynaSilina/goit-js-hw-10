@@ -20,7 +20,7 @@ function handleSearchCountryInput(e) {
     countryInfo.innerHTML = '';
     return;
   }
-  fetchCountries(countryName).then(data=>searchSpecifityCheck(data));
+  fetchCountries(countryName).then(data => searchSpecifityCheck(data));
 }
 
 function searchSpecifityCheck(data) {
@@ -31,29 +31,26 @@ function searchSpecifityCheck(data) {
     );
   } else if (countryAmount >= 2 && countryAmount <= 10) {
     countryInfo.innerHTML = '';
-    createListOfCountries(data);
-    countryList.innerHTML = markup;
+    // const markup = createListOfCountries(data);
+    countryList.innerHTML = createListOfCountries(data);
   } else {
     countryList.innerHTML = '';
-    createCountryCard(data);
-    countryInfo.innerHTML = card;
+    // createCountryCard(data);
+    countryInfo.innerHTML = createCountryCard(data);
   }
 }
 
-
 function createListOfCountries(data) {
-  const markup = data
+  return data
     .map(
       element =>
         `<li><img src="${element.flag}" width=60><h2>${element.name}</h2>`
     )
     .join(', ');
-    return markup;
 }
 
 function createCountryCard(data) {
   const languages = Object.values(data[0].languages).join(', ');
   const capital = Object.values(data[0].capital).join(', ');
-  const card = `<div class= "country-title"> <img src="${data[0].flag}" width=60><h2>${data[0].name}</h2></div><p><span>Capital: </span>${capital}</p><p><span>Population: </span>${data[0].population}</p><p><span>Languages: </span>${languages}</p>`;
-    return card;
+  return `<div class= "country-title"> <img src="${data[0].flag}" width=60><h2>${data[0].name}</h2></div><p><span>Capital: </span>${capital}</p><p><span>Population: </span>${data[0].population}</p><p><span>Languages: </span>${languages}</p>`;
 }
