@@ -53,7 +53,6 @@ function createCountryCard(data) {
   const capital = Object.values(data[0].capital).join(', ');
   return `<div class= "country-title"> <img src="${data[0].flag}" width=60><h2>${data[0].name}</h2></div><p><span>Capital: </span>${capital}</p><p><span>Population: </span>${data[0].population}</p><p><span>Languages: </span>${languages}</p>`;
 }
-
 function onError() {
   Notify.failure('Oops, there is no country with that name');
 }
