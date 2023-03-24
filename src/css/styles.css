@@ -14,32 +14,33 @@ body {
   background-image: url(../images/background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: initial;
 }
 
 #search-box {
   font: inherit;
   padding: 8px;
   min-width: 310px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 16px;
   margin-top: 40px;
-  border: 2px solid #ecb638;
+  border: 2px solid #ecb638; 
   border-radius: 8px;
   opacity: 0.9;
   transition: box-shadow 500ms linear, scale 500ms linear;
 }
 
 #search-box:hover {
-  transform: scale(1.05);
-  box-shadow: 1px 1px 0px #99999945,
-                2px 2px 0px #9999993a,
-                3px 3px 0px #9999993a,
-                4px 4px 0px #9999993a,
-                5px 5px 0px #99999928,
-                6px 6px 0px #99999903;
+  box-shadow: 1px 1px 0px #99999945, 2px 2px 0px #9999993a,
+    3px 3px 0px #9999993a, 4px 4px 0px #9999993a, 5px 5px 0px #99999928,
+    6px 6px 0px #99999903;
 }
 
 .country-list {
   list-style: none;
+  max-width: 320px;
+  padding-left: 10px;
 }
 .country-list li {
   display: flex;
@@ -54,8 +55,8 @@ img {
 }
 
 .country-info {
-max-width: 320px;
-margin: auto;
+  width: 320px;
+  margin: auto;
 }
 
 .country-info p {
@@ -69,4 +70,20 @@ margin: auto;
 .country-title {
   display: flex;
   align-items: center;
+}
+
+@media screen and (min-width: 480px) {
+  #search-box {
+    max-width: 500px;
+  }
+  .country-list {
+    max-width: 1200px;
+    padding-left: 40px;
+  }
+  #search-box:hover {
+    transform: scale(1.05);
+}
+.country-info {
+  width: 800px;
+}
 }
